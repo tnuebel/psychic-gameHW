@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic HW</title>
+</head>
+
+<body>
+
+
+    <h1>The Psychic Game</h1>
+    <p>Guess what letter I'm thinking of!?</p>
+    <p>Wins:</p>
+    <p>Losses:</p>
+    <p>Guesses Left:</p>
+    <p>Your guesses so far:</p>
+
+    <div id="Game">
+
+        <script type="text/javascript">
+
+
+            // MY PSEUDOCODE:  // = my original pseudocode; /// = psuedocode and hints found from google, etc.
+
+            // list all variables included in game; letters, wins, losses, guesses, etcl
+
+            var compGuess;
+            var wins = 0;
+            var loss = 0;
+            var guess = 10;
+            var guessArray = []; /// used to store guesses
+
+            // have computer track which letters user picks; 
+
+            // need to know when user is pressing a key or not. 
+            // when event happens we want the fxn performed; var userguess is created with value set to keycode to the key that's just been released, and take that character and turn it into a string; also error handling if user has caps lock on, etc...need to have all characters set to lowercase; want to console.log so we know what the user is pressing.  'tolowerCase' is handling user error.
+            randomGuess();
+            function randomGuess() {
+                var randomNum = Math.floor(Math.random() * 26) //random # from 0 - 26
+                var letter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+                compGuess = letter[randomNum]; //random letter from a - z
+                console.log(compGuess);
+            };
+
+            // inform key press from user
+            document.onkeypress = function (evt) {
+
+
+                var keyPressed = String.fromCharCode(evt.keyCode);
+                /// make the key lower case , which is good for comparing with compter value
+                keyPressed = keyPressed.toLowerCase();
+
+                // alert("You pressed " + keyPressed);   
+                console.log("You pressed " + keyPressed);
+
+                if (compGuess == keyPressed) {
+
+                    //generateRandomNumber();
+
+                    alert("You win!");
+                    wins++;
+                    guess = 10;
+
+
+
+                    var i = Math.floor(Math.random() * gameLetters.length);
+                    var compGuess = gameLetters[i];
+                    console.log("computer choose " + compGuess);
+                    console.log("Remaining Guesses: " + guess);
+                    console.log("Wins: " + wins);
+
+                } else {
+
+                    if (guess === 0) {
+                        loses++;
+                        alert("You lose!");
+                        console.log("Loses: " + loses);
+                        guessesRemaining = 10;
+                        console.log("Remaining Guesses: " + guess);
+                        guessArray = [];
+
+                    } else {
+                        console.log("Remaining Guesses: " + guess);
+                        guess--;
+
+                        guessArray.push(keyPressed);
+                        console.log(guessArray);
+
+                    }
+                };
+
+            }
+
+        </script>
+</body>
+
+</html>
